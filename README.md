@@ -1,5 +1,7 @@
 ## 📅 iCalKit
 
+> :warning: **This package doesn't implement [RFC 5545](https://tools.ietf.org/html/rfc5545)**: Be free to add new features
+
 ### Very WIP. Please don't use this yet. It'll be a bit before this actually becomes presentable.
 
 The purpose of this library is to parse and generate files that look somewhat like this:
