@@ -46,18 +46,18 @@ class iCalTests: XCTestCase {
 
         var firstEvent: Event = Event()
         firstEvent.uid = "uid1@example.com"
-        firstEvent.dtstamp = "19970714T170000Z".toDate()
+        firstEvent.dtstamp = VDate(rawValue: "19970714T170000Z")
         firstEvent.summary = "Bastille Day Party"
-        firstEvent.dtstart = "19970714T170000Z".toDate()
-        firstEvent.dtend = "19970715T035959Z".toDate()
+        firstEvent.dtstart = VDate(rawValue: "19970714T170000Z")
+        firstEvent.dtend = VDate(rawValue: "19970715T035959Z")
         // TODO add alarm to `firstEvent`
 
         var secondEvent: Event = Event()
         secondEvent.uid = "uid2@example.com"
-        secondEvent.dtstamp = "19980714T170000Z".toDate()
+        secondEvent.dtstamp = VDate(rawValue: "19980714T170000Z")
         secondEvent.summary = "Something completely different"
-        secondEvent.dtstart = "19980714T170000Z".toDate()
-        secondEvent.dtend = "19980715T035959Z".toDate()
+        secondEvent.dtstart = VDate(rawValue: "19980714T170000Z")
+        secondEvent.dtend = VDate(rawValue: "19980715T035959Z")
         // TODO add organizer to `secondEvent`
 
         XCTAssertEqual(cal.subComponents.count, 2) // Should have 2 events

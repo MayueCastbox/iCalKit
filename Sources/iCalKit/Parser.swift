@@ -56,17 +56,21 @@ internal class Parser {
                 // print("(key, value) is nil") // DEBUG
                 continue
             }
+            
+            //Ignore attributes of property
+            let property = key.components(separatedBy: ";").first!
+            
 
             if inCalendar && !inEvent {
-                currentCalendar?.addAttribute(attr: key, value)
+                currentCalendar?.addAttribute(attr: property, value)
             }
 
             if inEvent && !inAlarm {
-                currentEvent?.addAttribute(attr: key, value)
+                currentEvent?.addAttribute(attr: property, value)
             }
 
             if inAlarm {
-                currentAlarm?.addAttribute(attr: key, value)
+                currentAlarm?.addAttribute(attr: property, value)
             }
         }
 

@@ -6,7 +6,14 @@ public enum iCal {
     /// - Parameter string: string to load
     /// - Returns: List of containted `Calendar`s
     public static func load(string: String) -> [Calendar] {
-        let icsContent = string.components(separatedBy: "\n")
+        let icsContent: [String]
+        if string.contains("\r\n") {
+            //Some iCalandar string use "\r\n"
+            icsContent = string.components(separatedBy: "\r\n")
+        } else {
+            icsContent = string.components(separatedBy: "\n")
+        }
+
         return parse(icsContent)
     }
 

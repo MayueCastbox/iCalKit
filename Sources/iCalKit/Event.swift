@@ -7,7 +7,7 @@ public struct Event {
 
     // required
     public var uid: String!
-    public var dtstamp: Date!
+    public var dtstamp: VDate!
 
     // optional
     // public var organizer: Organizer? = nil
@@ -15,10 +15,10 @@ public struct Event {
     public var summary: String?
     public var descr: String?
     // public var class: some enum type?
-    public var dtstart: Date?
-    public var dtend: Date?
+    public var dtstart: VDate?
+    public var dtend: VDate?
 
-    public init(uid: String? = NSUUID().uuidString, dtstamp: Date? = Date()) {
+    public init(uid: String? = NSUUID().uuidString, dtstamp: VDate? = VDate.fromDate(Date())) {
         self.uid = uid
         self.dtstamp = dtstamp
     }
@@ -32,7 +32,7 @@ extension Event: CalendarComponent {
             str += "UID:\(uid)\n"
         }
         if let dtstamp = dtstamp {
-            str += "DTSTAMP:\(dtstamp.toString())\n"
+            str += "DTSTAMP:\(dtstamp.rawValue)\n"
         }
         if let summary = summary {
             str += "SUMMARY:\(summary)\n"
@@ -40,11 +40,14 @@ extension Event: CalendarComponent {
         if let descr = descr {
             str += "DESCRIPTION:\(descr)\n"
         }
+        if let location = location {
+            str += "LOCATION:\(location)\n"
+        }
         if let dtstart = dtstart {
-            str += "DTSTART:\(dtstart.toString())\n"
+            str += "DTSTART:\(dtstart.rawValue)\n"
         }
         if let dtend = dtend {
-            str += "DTEND:\(dtend.toString())\n"
+            str += "DTEND:\(dtend.rawValue)\n"
         }
 
         for (key, val) in otherAttrs {
@@ -66,17 +69,19 @@ extension Event: IcsElement {
         case "UID":
             uid = value
         case "DTSTAMP":
-            dtstamp = value.toDate()
+            dtstamp = VDate(rawValue: value)
         case "DTSTART":
-            dtstart = value.toDate()
+            dtstart = VDate(rawValue: value)
         case "DTEND":
-            dtend = value.toDate()
+            dtend = VDate(rawValue: value)
         // case "ORGANIZER":
         //     organizer
         case "SUMMARY":
             summary = value
         case "DESCRIPTION":
             descr = value
+        case "LOCATION":
+            location = value
         default:
             otherAttrs[attr] = value
         }
@@ -91,6 +96,7 @@ public func ==(lhs: Event, rhs: Event) -> Bool {
 
 extension Event: CustomStringConvertible {
     public var description: String {
-        return "\(dtstamp.toString()): \(summary ?? "")"
+        //return "\(dtstamp.toString()): \(summary ?? "")"
+        return "Event(uid: \(uid), dtstamp: \(dtstamp.rawValue), location: \(location), summary: \(summary), descr: \(descr), dtstart: \(dtstart?.rawValue), dtend: \(dtend?.rawValue))"
     }
 }
