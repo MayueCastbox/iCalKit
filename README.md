@@ -1,6 +1,6 @@
 ## 📅 iCalKit
 
-> :warning: **This package doesn't implement [RFC 5545](https://tools.ietf.org/html/rfc5545) completely**: Be free to add new features
+> :warning: **This package doesn't implement [RFC 5545](https://tools.ietf.org/html/rfc5545) completely**: Be free to add new features with a PR
 
 ### Very WIP. Please don't use this yet. It'll be a bit before this actually becomes presentable.
 

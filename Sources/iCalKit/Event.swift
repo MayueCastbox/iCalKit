@@ -14,6 +14,7 @@ public struct Event {
     public var location: String?
     public var summary: String?
     public var descr: String?
+    public var isCancelled = false
     // public var class: some enum type?
     public var dtstart: VDate?
     public var dtend: VDate?
@@ -42,6 +43,9 @@ extension Event: CalendarComponent {
         }
         if let location = location {
             str += "LOCATION:\(location)\n"
+        }
+        if isCancelled {
+            str += "STATUS:CANCELLED\n"
         }
         if let dtstart = dtstart {
             str += "DTSTART:\(dtstart.rawValue)\n"
@@ -82,6 +86,10 @@ extension Event: IcsElement {
             descr = value
         case "LOCATION":
             location = value
+        case "STATUS":
+            if value == "CANCELLED" {
+                isCancelled = true
+            }
         default:
             otherAttrs[attr] = value
         }
@@ -97,6 +105,6 @@ public func ==(lhs: Event, rhs: Event) -> Bool {
 extension Event: CustomStringConvertible {
     public var description: String {
         //return "\(dtstamp.toString()): \(summary ?? "")"
-        return "Event(uid: \(uid), dtstamp: \(dtstamp.rawValue), location: \(location), summary: \(summary), descr: \(descr), dtstart: \(dtstart?.rawValue), dtend: \(dtend?.rawValue))"
+        return "Event(uid: \(uid), dtstamp: \(dtstamp.rawValue), location: \(location), summary: \(summary), descr: \(descr), dtstart: \(dtstart?.rawValue), dtend: \(dtend?.rawValue), isCancelled: \(isCancelled))"
     }
 }
