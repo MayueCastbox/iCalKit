@@ -105,6 +105,6 @@ public func ==(lhs: Event, rhs: Event) -> Bool {
 extension Event: CustomStringConvertible {
     public var description: String {
         //return "\(dtstamp.toString()): \(summary ?? "")"
-        return "Event(uid: \(uid), dtstamp: \(dtstamp.rawValue), location: \(location), summary: \(summary), descr: \(descr), dtstart: \(dtstart?.rawValue), dtend: \(dtend?.rawValue), isCancelled: \(isCancelled))"
+        return "Event(uid: \(uid ?? "nil"), dtstamp: \(dtstamp.rawValue), location: \(location ?? "nil"), summary: \(summary ?? "nil"), descr: \(descr ?? "nil"), dtstart: \(dtstart?.rawValue ?? "nil"), dtend: \(dtend?.rawValue ?? "nil"), isCancelled: \(isCancelled))"
     }
 }
