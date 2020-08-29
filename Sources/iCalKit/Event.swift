@@ -23,6 +23,18 @@ public struct Event {
         self.uid = uid
         self.dtstamp = dtstamp
     }
+
+    public init(uid: String!, dtstamp: VDate!, location: String?, summary: String?, descr: String?, isCancelled: Bool, dtstart: VDate?, dtend: VDate?) {
+        self.uid = uid
+        self.dtstamp = dtstamp
+        self.location = location
+        self.summary = summary
+        self.descr = descr
+        self.isCancelled = isCancelled
+        self.dtstart = dtstart
+        self.dtend = dtend
+    }
+
 }
 
 extension Event: CalendarComponent {
