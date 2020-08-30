@@ -56,8 +56,9 @@ for cal in cals {
     }
 }
 
-// 19970714T190000+0200: Bastille Day Party
-// 19980714T190000+0200: Something completely different
+// Event(uid: uid1@example.com, dtstamp: 19970714T170000Z, location: nil, summary: Bastille Day Party, descr: nil, dtstart: 19970714T170000Z, dtend: 19970715T035959Z, isCancelled: false)
+
+// Event(uid: uid2@example.com, dtstamp: 19980714T170000Z, location: nil, summary: Something completely different, descr: nil, dtstart: 19980714T170000Z, dtend: 19980715T035959Z, isCancelled: false)
 ```
 
 ### Roadmap
