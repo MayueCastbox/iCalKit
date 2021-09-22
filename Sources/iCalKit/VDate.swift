@@ -20,3 +20,9 @@ extension VDate {
         return VDate(rawValue: iCal.dateFormatter.string(from: date))
     }
 }
+
+extension VDate: Equatable {
+    public static func == (lhs: VDate, rhs: VDate) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
+}
